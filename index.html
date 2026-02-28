@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Rangkaian Listrik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Simulasi Kontrol Lampu</h1>
+
+    <div class="container">
+        <div class="title">Rangkaian 1: 3 Lampu (Seri & Paralel)</div>
+        <img id="r1_1" src="off.gif" alt="Lampu 1">
+        <img id="r1_2" src="off.gif" alt="Lampu 2">
+        <img id="r1_3" src="off.gif" alt="Lampu 3">
+        <br>
+        
+        <p>Button 1 (Individu):</p>
+        <button onclick="toggleIndividu('r1_1')">Lampu 1</button>
+        <button onclick="toggleIndividu('r1_2')">Lampu 2</button>
+        <button onclick="toggleIndividu('r1_3')">Lampu 3</button>
+        
+        <p>Button 2 (Semua Serentak):</p>
+        <button onclick="toggleGrup(['r1_1', 'r1_2', 'r1_3'], 'on')">Nyalakan Semua</button>
+        <button onclick="toggleGrup(['r1_1', 'r1_2', 'r1_3'], 'off')">Matikan Semua</button>
+    </div>
+
+    <div class="container">
+        <div class="title">Rangkaian 2: 4 Lampu (Grup Spesifik)</div>
+        <img id="r2_a" src="off.gif" alt="Lampu A">
+        <img id="r2_b" src="off.gif" alt="Lampu B">
+        <img id="r2_c" src="off.gif" alt="Lampu C">
+        <img id="r2_d" src="off.gif" alt="Lampu D">
+        <br>
+        
+        <p>Button 1 (Individu):</p>
+        <button onclick="toggleIndividu('r2_a')">Lampu A</button>
+        <button onclick="toggleIndividu('r2_b')">Lampu B</button>
+        <button onclick="toggleIndividu('r2_c')">Lampu C</button>
+        <button onclick="toggleIndividu('r2_d')">Lampu D</button>
+        
+        <p>Button 2 (Semua Serentak):</p>
+        <button onclick="toggleGrup(['r2_a', 'r2_b', 'r2_c', 'r2_d'], 'on')">Semua ON</button>
+        <button onclick="toggleGrup(['r2_a', 'r2_b', 'r2_c', 'r2_d'], 'off')">Semua OFF</button>
+
+        <p>Button 3 (Grup):</p>
+        <button onclick="toggleGrup(['r2_a', 'r2_b'], 'on')">Grup (A,B) ON</button>
+        <button onclick="toggleGrup(['r2_c', 'r2_d'], 'on')">Grup (C,D) ON</button>
+    </div>
+
+    <script>
+        function toggleIndividu(idLampu) {
+            let lampu = document.getElementById(idLampu);
+            if (lampu.src.includes('off.gif')) {
+                lampu.src = 'on.gif';
+            } else {
+                lampu.src = 'off.gif';
+            }
+        }
+
+        function toggleGrup(daftarId, aksi) {
+            daftarId.forEach(id => {
+                let lampu = document.getElementById(id);
+                if (aksi === 'on') {
+                    lampu.src = 'on.gif';
+                } else {
+                    lampu.src = 'off.gif';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
